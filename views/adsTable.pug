@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .inner
+    h2 Welcome! We have #{ads.length} Ads
+    table.table
+      thead
+        td name
+        td sale
+        td price
+        td link to picture
+        td thumbnail
+        td author
+        td id
+      each ad, i in ads
+        tr
+          td #{ad.name}
+          td #{ad.sale}
+          td #{ad.price}
+          td 
+            a(href=`${ad.picture}`) #{ad.picture}
+              
+          td #{ad.thumbnail}
+          td #{ad.author}
+          td #{ad._id}
+          
