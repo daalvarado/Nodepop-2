@@ -10,6 +10,7 @@ const flash = require("connect-flash");
 const expressValidator = require("express-validator");
 const routes = require("./routes/index");
 const helpers = require("./helpers");
+const i18n = require("./lib/i18nConfigure")();
 const errorHandlers = require("./handlers/errorHandlers");
 
 const app = express();
@@ -52,6 +53,9 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;
   next();
 });
+
+// use i18n
+app.use(i18n.init);
 
 //Define routes
 app.use('/', routes);
