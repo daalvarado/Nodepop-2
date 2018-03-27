@@ -1,8 +1,13 @@
 @charset "UTF-8";
 html {
   font-size: 10px;
+  box-sizing: border-box;
 }
-
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 body {
   background: #262161;
   background: #efefef;
@@ -21,6 +26,12 @@ body:before {
   height: 10px;
   width: 100%;
 }
+img {
+  max-width: 100%;
+}
+[hidden] {
+  display: none;
+}
 .container {
   display: grid;
   grid-gap: 20px;
@@ -30,22 +41,105 @@ body:before {
     "content"
     "footer";
 }
+a {
+  text-decoration: none;
+}
 .header {
   grid-area: header;
   display: grid;
   grid-template-rows: auto auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #303030;
   grid-template-areas:
     "Pages User"
     "Search Search";
 }
 .navSectionPages {
   display: grid;
+  grid-template-columns: 200px repeat(auto-fit, 100px);
   grid-template-rows: auto;
   grid-area: Pages;
 }
 .navSectionSearch {
-  display: grid;
+  display: flex;
+  flex: 1 1 auto;
   grid-area: Search;
+  width: 100%;
+}
+.navItem {
+  display: grid;
+}
+.navLink {
+  background: #303030;
+  color: white;
+  font-family: sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 1.2rem 2rem 1rem 2rem; /* display: block; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  border-bottom: 5px solid transparent;
+}
+.navLink svg {
+  width: 60px;
+  transition: all 0.2s;
+  fill: white;
+  margin-bottom: 1rem;
+}
+.navLink:hover,
+.navLink--active {
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  border-right-color: rgba(0, 0, 0, 0.05);
+  background: linear-gradient(
+      90deg,
+      #48ded4 0%,
+      #a026bf 20%,
+      #e82c75 60%,
+      #ffc40e 85%,
+      #48ded4 95%
+    )
+    fixed;
+}
+.navLink:hover svg,
+.navLink--active svg {
+  transform: scale(1.2);
+}
+.navLinkLogo:hover svg {
+  transform: none;
+}
+.navLinkLogo svg {
+  width: 200px;
+  height: 100%;
+  margin: 0;
+}
+.searchResults {
+  background: white;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+.searchInput {
+  font-size: 30px;
+  font-family: sans-serif;
+  background: none;
+  color: white;
+  outline: 0;
+  border: 0;
+}
+.searchResult {
+  padding: 10px;
+  display: block;
+  border-bottom: 1px solid #ececec;
+}
+.searchResult--active {
+  background: #f1f1f1;
 }
 .navSectionUser {
   display: grid;
@@ -97,11 +191,11 @@ h3 {
   font-weight: 100;
   color: #37393a;
 }
-a:link {
+.table a:link {
   text-decoration: none;
   color: #ee7297;
 }
-a:visited {
+.table a:visited {
   color: #77b6ea;
 }
 /* Ads Table */
