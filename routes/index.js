@@ -8,6 +8,7 @@ const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/", catchErrors(adsController.getAdsTable));
 router.get("/ads", catchErrors(adsController.getAds));
+router.get("/ads/page/:page", catchErrors(adsController.getAds));
 router.get("/tags", catchErrors(adsController.getTags));
 router.get("/tags", catchErrors(adsController.editAd));
 

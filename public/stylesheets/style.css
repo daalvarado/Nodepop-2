@@ -851,6 +851,7 @@ label {
 
 .table {
   width: 100%;
+  font-family: "Lato", sans-serif;
 }
 .table td {
   padding: 5px;
@@ -862,6 +863,7 @@ label {
   background: #f7f7f7;
 }
 .table thead tr {
+  font-family: "Mina", sans-serif;
   background: #303030;
   color: white;
 }
@@ -1380,5 +1382,3 @@ pre.error {
   line-height: 3;
   white-space: pre-line;
 }
-
-/*# sourceMappingURL=style.css.map*/

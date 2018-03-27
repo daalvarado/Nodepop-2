@@ -4,9 +4,8 @@ include mixins/_adCard
 include mixins/_pagination
 
 block content
-  .inner
-    h2= title
-    .ads
-      each ad in ads
-        +adCard(ad)
-    +pagination(page, pages, count)
+  h2.sectionTitle= title
+  .ads
+    each ad in ads
+      +adCard(ad)
+  +pagination(page, pages, count)

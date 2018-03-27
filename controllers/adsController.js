@@ -15,15 +15,52 @@ exports.getAdsTable = async(req, res) => {
 }
 
 exports.getAds = async(req, res) => {
-const page = req.params.page || 1;
-  const limit = 4;
-  const skip = (page * limit) - limit;
+  const name = req.query.name;
+  const tags = req.query.tags;
+  const sale = req.query.sale;
+  const priceRaw = req.query.price;
+  const page = req.params.page || 1;
+  const sort = req.query.sort;
+  const fields = req.query.fields;
+  const limit = parseInt(req.query.limit) || 4;
+  const skip = parseInt(req.query.skip) || ((page * limit) - limit);
+
+  const filter = {};
+  if (typeof name !== "undefined") {
+    filter.name = new RegExp("^" + req.query.name, "i");
+  }
+
+  if (typeof sale !== "undefined") {
+    filter.sale = sale;
+    console.log(filter.sale);
+  }
+
+  if (typeof tags !== "undefined") {
+    const regex = tags.split(",").join("|");
+    filter.tags = { $regex: regex, $options: "i" };
+    console.log(filter.tags);
+  }
+
+  if (typeof priceRaw !== "undefined") {
+    if (/^[0-9]\d{0,9}(\.\d{1,2})?$/.test(priceRaw)) {
+      filter.price = priceRaw;
+    } else if (/^-[0-9]\d{0,9}(\.\d{1,2})?$/.test(priceRaw)) {
+      filter.price = { $lte: priceRaw.substring(1) };
+    } else if (/^[0-9]\d{0,9}(\.\d{1,2})?-$/.test(priceRaw)) {
+      filter.price = { $gte: priceRaw.substring(0, priceRaw.length - 1) };
+    } else if (/^[0-9]\d{0,9}(\.\d{1,2})?-\d{0,9}(\.\d{1,2})?$/.test(priceRaw)) {
+      const max = priceRaw.split("-").pop();
+      const min = priceRaw.split("-")[0];
+      filter.price = { $gte: min, $lte: max };
+    }
+  }
 
   const adsPromise = Ad
-    .find()
+
+    .find(filter)
     .skip(skip)
     .limit(limit)
-    .sort({ created: 'desc' });
+    .sort(sort || { created: 'desc' });
 
   const countPromise = Ad.count();
 
