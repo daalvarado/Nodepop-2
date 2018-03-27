@@ -18,6 +18,12 @@ html
                 a.navLink(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'navLink--active' : ''))
                   != h.icon(item.icon)
                   span #{item.title}
+          .navSection.navSectionLanguages
+            each item in h.languages
+              li.navItem
+                button.navLink(class=((item.title).startsWith(i18n.locale) ? 'navLink--active' : ''))
+                  !=h.icon(item.icon)
+                  span #{item.title}
           .navSection.navSectionSearch
             input.searchInput(type="text" placeholder="Monkey, TV, Potatoes..." name="search")
             .searchResults
@@ -26,8 +32,8 @@ html
               li.navItem: a.navLink(href="/account", class=(currentPath.startsWith('/account') ? 'navLink--active' : ''))
                 img.gravatar(src=user.gravatar + 'd=retro')
             else
-              li.navItem: a.navLink(href="/register", class=(currentPath.startsWith('/register') ? 'navLink--active' : '')) Register
-              li.navItem: a.navLink(href="/login", class=(currentPath.startsWith('/login') ? 'navLink--active' : '')) Log In
+              li.navItem: a.navLink(href="/register", class=(currentPath.startsWith('/register') ? 'navLink--active' : '')) #{__("Register")}
+              li.navItem: a.navLink(href="/login", class=(currentPath.startsWith('/login') ? 'navLink--active' : '')) #{__('Log In')}
       .messages
         block messages
            if locals.flashes

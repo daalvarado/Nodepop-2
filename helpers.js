@@ -1,4 +1,6 @@
 
+const i18n = require("./lib/i18nConfigure")();
+
 const fs = require("fs");
 
 exports.moment = require("moment");
@@ -10,15 +12,15 @@ exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Nodepop`;
 
 exports.menu = [
-  { slug: "/ads", title: "Ads", icon: "ad" },
-  { slug: "/table", title: "Table", icon: "table"},
-  { slug: "/tags", title: "Tags", icon: "tag" },
-  { slug: "/add", title: "Add", icon: "add" },
+  { slug: "/ads", title: i18n.__("Ads"), icon: "ad" },
+  { slug: "/table", title: i18n.__("Table"), icon: "table"},
+  { slug: "/tags", title: i18n.__("Tags"), icon: "tag" },
+  { slug: "/add", title: i18n.__("Add"), icon: "add" },
   { slug: "/api", title: "API", icon: "api" },
-  { slug: "/users", title: "Users", icon: "users" }
+  { slug: "/users", title: i18n.__("Users"), icon: "users" }
 ];
 
 exports.languages = [
-  { title: "Eng", icon: "eng" },
-  { title: "Esp", icon: "esp" }
+  { title: "en", icon: "eng" },
+  { title: "es", icon: "esp" }
 ];

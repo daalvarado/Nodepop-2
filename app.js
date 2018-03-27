@@ -15,6 +15,12 @@ const errorHandlers = require("./handlers/errorHandlers");
 
 const app = express();
 
+// handle cookies
+app.use(cookieParser());
+
+// use i18n
+app.use(i18n.init);
+
 // define view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,8 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // use express validator
 app.use(expressValidator());
 
-// handle cookies
-app.use(cookieParser());
+
  
 // use sessions
 app.use(
@@ -46,16 +51,18 @@ app.use(
 // use flash
 app.use(flash());
 
+
+
 app.use((req, res, next) => {
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
+ 
   next();
 });
 
-// use i18n
-app.use(i18n.init);
+
 
 //Define routes
 app.use('/', routes);

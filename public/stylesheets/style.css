@@ -48,20 +48,27 @@ a {
   grid-area: header;
   display: grid;
   grid-template-rows: auto auto;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 6fr 2fr 2fr;
   list-style: none;
   margin: 0;
   padding: 0;
   background: #303030;
   grid-template-areas:
-    "Pages User"
-    "Search Search";
+    "Pages Languages User"
+    "Search Search Search";
 }
 .navSectionPages {
   display: grid;
   grid-template-columns: 200px repeat(auto-fit, 125px);
   grid-template-rows: auto;
   grid-area: Pages;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+.navSectionLanguages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 125px);
+  grid-area: Languages;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey;
 }

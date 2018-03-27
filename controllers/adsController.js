@@ -2,17 +2,19 @@ const mongoose = require("mongoose");
 const Ad = mongoose.model("Ad");
 const User = mongoose.model("User");
 const multer = require("multer");
+const i18n = require("../lib/i18nConfigure")();
+
 
 exports.homePage = async (req, res) => {
   const ads = await Ad.find();
-  res.render('welcome', {title: 'Home Page', ads});
+  res.render('welcome', {title: 'Home Page', ads, i18n});
 };
 
 exports.getAdsTable = async(req, res) => {
     
     const ads = await Ad.find()
       .sort({ created: "desc" }); 
-  res.render('adsTable', { title: 'Ads - Table', ads});
+  res.render('adsTable', { title: 'Ads - Table', ads, i18n});
 }
 
 exports.getAds = async(req, res) => {
@@ -72,6 +74,6 @@ exports.getAds = async(req, res) => {
     res.redirect(`/ads/page/${pages}`);
     return;
   }
-
-  res.render('ads', { title: 'Ads', ads, page, pages, count });
+  
+  res.render('ads', { title: i18n.__('Ads'), ads, page, pages, count,i18n });
 };

@@ -4,6 +4,7 @@ const adsController = require("../controllers/adsController");
 const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
 
+
 const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/", catchErrors(adsController.homePage));
