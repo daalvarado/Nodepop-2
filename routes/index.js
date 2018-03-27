@@ -6,7 +6,8 @@ const authController = require("../controllers/authController");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
-router.get("/", catchErrors(adsController.getAdsTable));
+router.get("/", catchErrors(adsController.homePage));
+router.get("/table", catchErrors(adsController.getAdsTable));
 router.get("/ads", catchErrors(adsController.getAds));
 router.get("/ads/page/:page", catchErrors(adsController.getAds));
 router.get("/tags", catchErrors(adsController.getTags));

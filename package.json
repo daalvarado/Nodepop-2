@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "cross-env DEBUG=nodepop-2:* NODE_ENV=development nodemon start.js",
+    "cluster":
+      "cross-env DEBUG=nodepop-2:* NODE_ENV=development nodemon start-cluster.js",
     "dbinit": "node ./database/dbInit"
   },
   "repository": {

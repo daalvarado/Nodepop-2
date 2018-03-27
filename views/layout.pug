@@ -3,7 +3,7 @@ html
   head
     title= `${title} | ${h.siteName}`
     link(rel='stylesheet', href='/stylesheets/normalize.css')
-    link(rel='stylesheet', href='/stylesheets/style2.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
     link(href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Lato|Mina|Oxygen|Aldrich" rel="stylesheet")
   body
     .container
@@ -22,6 +22,12 @@ html
             input.searchInput(type="text" placeholder="Monkey, TV, Potatoes..." name="search")
             .searchResults
           .navSection.navSectionUser
+            if user
+              li.navItem: a.navLink(href="/account", class=(currentPath.startsWith('/account') ? 'navLink--active' : ''))
+                img.gravatar(src=user.gravatar + 'd=retro')
+            else
+              li.navItem: a.navLink(href="/register", class=(currentPath.startsWith('/register') ? 'navLink--active' : '')) Register
+              li.navItem: a.navLink(href="/login", class=(currentPath.startsWith('/login') ? 'navLink--active' : '')) Log In
       .messages
         block messages
            if locals.flashes

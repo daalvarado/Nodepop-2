@@ -3,8 +3,9 @@ const Ad = mongoose.model("Ad");
 const User = mongoose.model("User");
 const multer = require("multer");
 
-exports.homePage = (req, res) => {
-  res.render("index");
+exports.homePage = async (req, res) => {
+  const ads = await Ad.find();
+  res.render('welcome', {title: 'Home Page', ads});
 };
 
 exports.getAdsTable = async(req, res) => {

@@ -11,8 +11,14 @@ exports.siteName = `Nodepop`;
 
 exports.menu = [
   { slug: "/ads", title: "Ads", icon: "ad" },
+  { slug: "/table", title: "Table", icon: "table"},
   { slug: "/tags", title: "Tags", icon: "tag" },
   { slug: "/add", title: "Add", icon: "add" },
-  { slug: "/eng", title: "Eng", icon: "eng" },
-  { slug: "/esp", title: "Esp", icon: "esp" }
+  { slug: "/api", title: "API", icon: "api" },
+  { slug: "/users", title: "Users", icon: "users" }
+];
+
+exports.languages = [
+  { title: "Eng", icon: "eng" },
+  { title: "Esp", icon: "esp" }
 ];
