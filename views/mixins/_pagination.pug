@@ -2,9 +2,9 @@ mixin pagination(page, pages, count)
   .pagination
     .pagination__prev
       if page > 1
-        a(href=`/ads/page/${page - 1}`) Prev
+        a(href=`/ads/page/${page - 1}`) #{__('Prev')}
     .pagination__text
-      p Page #{page} of #{pages} — #{count} total results
+      p #{__('Page')} #{page} #{__('of')} #{pages} — #{count} #{__('total results')}
     .pagination__next
       if page < pages
-        a(href=`/ads/page/${parseFloat(page) + 1}`) Next
+        a(href=`/ads/page/${parseFloat(page) + 1}`) #{__('Next')}

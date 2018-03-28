@@ -1,7 +1,7 @@
 mixin adCard(ad = {})
   .ad
     .ad__actions
-      button soon
+      button #{__('soon')}
       if user && ad.author.equals(user._id)
         .ad__action.ad__action--edit 
         a(href=`/ads/${ad._id}/edit`)
@@ -11,8 +11,8 @@ mixin adCard(ad = {})
       h3.title
         a(href=`/ad/${ad.slug}`) #{ad.name}
     .ad__details
-      p Sale: #{ad.sale}
-      p Price: #{ad.price}
-      p Tags: #{ad.tags}
+      p #{__('Sale:')} #{ad.sale}
+      p #{__('Price:')} #{ad.price}
+      p #{__('Tags:')} #{ad.tags}
               
             

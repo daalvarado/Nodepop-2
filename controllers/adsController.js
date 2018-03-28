@@ -6,28 +6,22 @@ const i18n = require("../lib/i18nConfigure")();
 
 
 
+
 exports.homePage = async (req, res) => {
   
   const ads = await Ad.find();
-  console.log("request:");
-  console.log(req.query);
-  console.log(req.locale);
-  console.log(i18n.locale);
-  console.log(req.cookies);
   res.render('welcome', {title: 'Home Page', ads, i18n});
 };
 
 exports.getAdsTable = async(req, res) => {
-    
     const ads = await Ad.find()
       .sort({ created: "desc" }); 
   res.render('adsTable', { title: 'Ads - Table', ads, i18n});
 }
 
 exports.english = async(req, res) => {
-  res.cookie('nodepop-lang', 'en');
+  res.cookie("nodepop-lang", "en");
   i18n.locale = "en";
-  i18n.setLocale('en');
   res.redirect(req.headers.referer)
 }
 

@@ -55,10 +55,6 @@ app.use(flash());
 app.use(i18n.init);
 
 app.use((req, res, next) => {
-  
-  console.log("i18n.locale: " + i18n.locale);
-  console.log(req.query.lang);
-  console.log("req.locale: " + req.locale);
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null;

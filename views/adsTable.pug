@@ -2,15 +2,15 @@ extends layout
 
 block content
   .inner
-    h2 Table: our #{ads.length} Ads
+    h2 #{__('Table: our')} #{ads.length} #{__('Ads')}
     table.table
       thead
-        td name
-        td sale
-        td price
-        td link to picture
+        td #{__('name')}
+        td #{__('sale')}
+        td #{__('price')}
+        td #{__('link to picture')}
         td thumbnail
-        td author
+        td #{__('author')}
         td id
       each ad, i in ads
         tr
