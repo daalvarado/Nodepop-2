@@ -15,11 +15,11 @@ const errorHandlers = require("./handlers/errorHandlers");
 
 const app = express();
 
+
 // handle cookies
 app.use(cookieParser());
 
-// use i18n
-app.use(i18n.init);
+
 
 // define view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -51,21 +51,26 @@ app.use(
 // use flash
 app.use(flash());
 
-
+// use i18n
+app.use(i18n.init);
 
 app.use((req, res, next) => {
+  
+  console.log("i18n.locale: " + i18n.locale);
+  console.log(req.query.lang);
+  console.log("req.locale: " + req.locale);
   res.locals.h = helpers;
   res.locals.flashes = req.flash();
   res.locals.user = req.user || null;
   res.locals.currentPath = req.path;
- 
   next();
 });
 
 
 
+
 //Define routes
-app.use('/', routes);
+app.use(  "/",  routes);
 
 //Error handling
 app.use(errorHandlers.notFound);

@@ -1,0 +1,1 @@
+button.navLink.navLang(class=((item.title).startsWith(i18n.locale) ? 'navLang--active' : ''))

@@ -21,6 +21,6 @@ exports.menu = [
 ];
 
 exports.languages = [
-  { title: "en", icon: "eng" },
-  { title: "es", icon: "esp" }
+  { slug: "ads/en", title: "en", icon: "eng" },
+  { slug: "ads/es", title: "es", icon: "esp" }
 ];

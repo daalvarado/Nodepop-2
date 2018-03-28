@@ -13,5 +13,6 @@ router.get("/ads", catchErrors(adsController.getAds));
 router.get("/ads/page/:page", catchErrors(adsController.getAds));
 router.get("/tags", catchErrors(adsController.getTags));
 router.get("/tags", catchErrors(adsController.editAd));
-
+router.get("/ads/en", catchErrors(adsController.english));
+router.get("/ads/es", catchErrors(adsController.spanish));
 module.exports = router;

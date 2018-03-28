@@ -2,7 +2,9 @@ doctype html
 html
   head
     title= `${title} | ${h.siteName}`
+    script(src = "https://code.jquery.com/jquery-3.3.1.js")
     link(rel='stylesheet', href='/stylesheets/normalize.css')
+    
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky|Lato|Mina|Oxygen|Aldrich" rel="stylesheet")
   body
@@ -21,7 +23,8 @@ html
           .navSection.navSectionLanguages
             each item in h.languages
               li.navItem
-                button.navLink(class=((item.title).startsWith(i18n.locale) ? 'navLink--active' : ''))
+                
+                a.navLink.navLang(href=item.slug, id=item.title,class=(item.title.startsWith(i18n.locale) ? 'navLink--active': ''))
                   !=h.icon(item.icon)
                   span #{item.title}
           .navSection.navSectionSearch
@@ -50,3 +53,6 @@ html
       .footer
         block footer
           div.footer-text &copy Nodepop 2018
+
+block scripts
+  //- script(src="./js/lang.js", type="module")

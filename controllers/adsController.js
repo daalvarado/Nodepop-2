@@ -5,8 +5,15 @@ const multer = require("multer");
 const i18n = require("../lib/i18nConfigure")();
 
 
+
 exports.homePage = async (req, res) => {
+  
   const ads = await Ad.find();
+  console.log("request:");
+  console.log(req.query);
+  console.log(req.locale);
+  console.log(i18n.locale);
+  console.log(req.cookies);
   res.render('welcome', {title: 'Home Page', ads, i18n});
 };
 
@@ -16,6 +23,19 @@ exports.getAdsTable = async(req, res) => {
       .sort({ created: "desc" }); 
   res.render('adsTable', { title: 'Ads - Table', ads, i18n});
 }
+
+exports.english = async(req, res) => {
+  res.cookie('nodepop-lang', 'en');
+  i18n.locale = "en";
+  i18n.setLocale('en');
+  res.redirect(req.headers.referer)
+}
+
+exports.spanish = async (req, res) => {
+  res.cookie("nodepop-lang", "es");
+  i18n.locale='es';
+  res.redirect(req.headers.referer);
+};
 
 exports.getAds = async(req, res) => {
   const name = req.query.name;
@@ -74,6 +94,5 @@ exports.getAds = async(req, res) => {
     res.redirect(`/ads/page/${pages}`);
     return;
   }
-  
   res.render('ads', { title: i18n.__('Ads'), ads, page, pages, count,i18n });
 };
