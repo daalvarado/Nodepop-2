@@ -1,0 +1,25 @@
+mixin adForm(ad = {})
+  form(action=`/add/${ad._id || ''}` method="POST" class="card" enctype="multipart/form-data")
+    label(for="name") Name
+    input(type="text" name="name" value=ad.name)
+    label(for="sale") Sale
+    select(name="sale" value=ad.sale)
+        <option value="true">true</option>
+        <option value="false">false</option>
+    label(for="price") Price
+    input(type="text" id="price" name="price" value=ad.price)
+    //- Image Upload
+    label(for="picture") Picture
+      input(type="file" name="picture" id="picture" accept="image/gif, image/png, image/jpeg")
+      if ad.picture
+        img(src=`/uploads/${ad.picture}`, alt=ad.name width=200)
+    //- tags
+    
+    - const choices = ['Lifestyle', 'Mobile', 'Motor', 'Work']
+    - const tags = ad.tags || []
+    ul.tags
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox" id=choice value=choice name="tags" checked=(tags.includes(choice)))
+          label(for=choice) #{choice}
+    input(type="submit" value="Save →" class="button")

@@ -17,4 +17,11 @@ router.get("/ads/en", catchErrors(adsController.english));
 router.get("/ads/es", catchErrors(adsController.spanish));
 router.get("/api/ads", catchErrors(apiController.apiAds));
 router.get("/api/users", catchErrors(apiController.apiUsers));
+router.get("/add", adsController.addAd);
+router.post(
+  "/add",
+  adsController.upload,
+  catchErrors(adsController.resize),
+  catchErrors(adsController.createAd)
+);
 module.exports = router;

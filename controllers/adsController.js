@@ -2,9 +2,20 @@ const mongoose = require("mongoose");
 const Ad = mongoose.model("Ad");
 const User = mongoose.model("User");
 const multer = require("multer");
+const jimp = require("jimp");
 const i18n = require("../lib/i18nConfigure")();
 
-
+const multerOptions = {
+  storage: multer.memoryStorage(),
+  fileFilter(req, file, next) {
+    const isPhoto = file.mimetype.startsWith("image/");
+    if (isPhoto) {
+      next(null, true);
+    } else {
+      next({ message: "That filetype isn't allowed!" }, false);
+    }
+  }
+};
 
 
 exports.homePage = async (req, res) => {
@@ -18,6 +29,35 @@ exports.getAdsTable = async(req, res) => {
       .sort({ created: "desc" }); 
   res.render('adsTable', { title: 'Ads - Table', ads, i18n});
 }
+
+exports.addAd = (req, res) => {
+  res.render("editAd", { title: "Add a new Ad", i18n });
+};
+
+exports.upload = multer(multerOptions).single('picture');
+
+exports.resize = async (req, res, next) => {
+  if (!req.file) {
+    next(); 
+    return;
+  }
+  const extension = req.file.mimetype.split("/")[1];
+  req.body.picture = `${uuid.v4()}.${extension}`;
+  const photo = await jimp.read(req.file.buffer);
+  await photo.resize(800, jimp.AUTO);
+  await photo.write(`./public/uploads/${req.body.picture}`);
+  next();
+};
+
+exports.createAd = async (req, res) => {
+  // req.body.author = req.user._id;
+  const ad = await new Ad(req.body).save();
+  req.flash(
+    "success",
+    `Successfully Created ${ad.name}. Care to leave a review?`
+  );
+  res.redirect(`/store/${ad.slug}`);
+};
 
 exports.english = async(req, res) => {
   res.cookie("nodepop-lang", "en");

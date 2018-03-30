@@ -42,7 +42,7 @@ html
           .navSection.navSectionLanguages
             each item in h.languages
               li.navItem
-                a.navLink.navLang(href=item.slug, id=item.title,class=(item.title.startsWith(i18n.locale) ? 'navLink--active': ''))
+                //- a.navLink.navLang(href=item.slug, id=item.title,class=(item.title.startsWith(i18n.locale) ? 'navLink--active': ''))
                   !=h.icon(item.icon)
                   span #{item.title}
           .navSection.navSectionSearch
