@@ -6,43 +6,19 @@ const i18n = require("../lib/i18nConfigure")();
 
 
 
-
-exports.homePage = async (req, res) => {
+exports.apiAds = async (req, res) => {
   
-  const ads = await Ad.find();
-  res.render('welcome', {title: 'Home Page', ads, i18n});
-};
-
-exports.getAdsTable = async(req, res) => {
-    const ads = await Ad.find()
-      .sort({ created: "desc" }); 
-  res.render('adsTable', { title: 'Ads - Table', ads, i18n});
-}
-
-exports.english = async(req, res) => {
-  res.cookie("nodepop-lang", "en");
-  i18n.locale = "en";
-  res.redirect(req.headers.referer)
-}
-
-exports.spanish = async (req, res) => {
-  res.cookie("nodepop-lang", "es");
-  i18n.locale='es';
-  res.redirect(req.headers.referer);
-};
-
-exports.getAds = async(req, res) => {
   const name = req.query.name;
   const tags = req.query.tags;
   const sale = req.query.sale;
   const priceRaw = req.query.price;
-  const page = req.params.page || 1;
+  const skip = parseInt(req.query.skip);
+  const limit = parseInt(req.query.limit);
   const sort = req.query.sort;
   const fields = req.query.fields;
-  const limit = parseInt(req.query.limit) || 4;
-  const skip = parseInt(req.query.skip) || ((page * limit) - limit);
-
+  
   const filter = {};
+
   if (typeof name !== "undefined") {
     filter.name = new RegExp("^" + req.query.name, "i");
   }
@@ -71,23 +47,14 @@ exports.getAds = async(req, res) => {
       filter.price = { $gte: min, $lte: max };
     }
   }
+    
+  const ads = await Ad
+    .list(filter, skip, limit, sort, fields);
+  res.json(ads);
+};
 
-  const adsPromise = Ad
-
-    .find(filter)
-    .skip(skip)
-    .limit(limit)
-    .sort(sort || { created: 'desc' });
-
-  const countPromise = Ad.count();
-
-  const [ads, count] = await Promise.all([adsPromise, countPromise]);
-  const pages = Math.ceil(count / limit);
-  if (!ads.length && skip) {
-    req.flash('info', `Hey! You asked for page ${page}. But that doesn't exist. So I put you on page ${pages}`);
-    res.redirect(`/ads/page/${pages}`);
-    return;
-  }
-  res.render('ads', { title: i18n.__('Ads'), ads, page, pages, count,i18n });
+exports.apiUsers = async (req, res) => {
+  const users = await User.find();
+  res.json(users);
 };
 

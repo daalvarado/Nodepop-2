@@ -31,11 +31,11 @@ html
                 != h.icon('add')
                 span #{__('Add')}
             li.navItem
-              a.navLink(href='/api', class=(currentPath.startsWith('/api') ? 'navLink--active' : ''))
+              a.navLink(href='/api/ads', class=(currentPath.startsWith('/api') ? 'navLink--active' : ''))
                 != h.icon('api')
                 span API
             li.navItem
-              a.navLink(href='/users', class=(currentPath.startsWith('/users') ? 'navLink--active' : ''))
+              a.navLink(href='/api/users', class=(currentPath.startsWith('/users') ? 'navLink--active' : ''))
                 != h.icon('users')
                 span #{__('Users')}
 
