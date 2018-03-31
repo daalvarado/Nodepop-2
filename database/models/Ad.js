@@ -43,30 +43,10 @@ const adSchema = new mongoose.Schema({
     default: Date.now
   },
   tags: {
-    type: String,
+    type: [String],
     index: true,
     required: true,
-    validate: {
-      validator: function(v) {
-        v = v.split(",");
-        var count = 0;
-        for (let i = 0; i < v.length; i++) {
-          v[i] = v[i].trim();
-          if (
-            v[i] === "lifestyle" ||
-            v[i] === "motor" ||
-            v[i] === "mobile" ||
-            v[i] === "work"
-          ) {
-            count = count;
-          } else {
-            count++;
-          }
-        }
-        return count == 0;
-      },
-      message: "Tags not valid"
-    }
+    
   }
 });
 

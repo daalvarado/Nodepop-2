@@ -12,6 +12,7 @@ router.get("/table", catchErrors(adsController.getAdsTable));
 router.get("/ads", catchErrors(adsController.getAds));
 router.get("/ads/page/:page", catchErrors(adsController.getAds));
 router.get("/tags", catchErrors(adsController.getTags));
+router.get("/tags/:tag", catchErrors(adsController.getTags));
 router.get("/ads/en", catchErrors(adsController.english));
 router.get("/ads/es", catchErrors(adsController.spanish));
 router.get("/api/ads", catchErrors(apiController.apiAds));

@@ -483,7 +483,6 @@ textarea.input--error {
 }
 .tag__choice input + label {
   background: #e6e6e6;
-
   padding: 1rem 1rem 1rem 4rem;
 }
 .tag__choice input:checked + label {
@@ -496,4 +495,37 @@ textarea.input--error {
   -ms-flex-item-align: center;
   -ms-grid-row-align: center;
   align-self: center;
+}
+/* Tags */
+.tag__link {
+  background: #ffc40e;
+  color: #303030;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 10px;
+  -webkit-clip-path: polygon(10px 0%, 100% 1%, 100% 100%, 10px 100%, 0% 50%);
+  clip-path: polygon(10px 0%, 100% 1%, 100% 100%, 10px 100%, 0% 50%);
+}
+.tag__link--active {
+  background: #827cd2;
+}
+.tag__link--active .tag__text {
+  color: white;
+}
+.tag__text {
+  font-size: 15px;
+  font-family: Mina;
+  padding: 1rem 1rem;
+  display: block;
+}
+.tag__count {
+  padding: 1rem 1rem;
+  background: white;
+  border-left: 3px solid rgba(0, 0, 0, 0.1);
+  margin-right: -1px; /* ugh */
+  background-clip: padding-box;
+}
+.tag-area {
+  display: grid;
+  justify-items: center;
 }

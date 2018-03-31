@@ -1,21 +1,21 @@
 mixin adForm(ad = {})
   form(action=`/add/${ad._id || ''}` method="POST" class="card" enctype="multipart/form-data")
-    label(for="name") Name
+    label(for="name") #{__('Name')}
     input(type="text" name="name" value=ad.name)
-    label(for="sale") Sale
+    label(for="sale") #{__('Sale')}
     select(name="sale" value=ad.sale)
         <option value="true">true</option>
         <option value="false">false</option>
-    label(for="price") Price
+    label(for="price") #{__('Price')}
     input(type="text" id="price" name="price" value=ad.price)
     //- Image Upload
-    label(for="picture") Picture
+    label(for="picture") #{__('Picture')}
       input(type="file" name="picture" id="picture" accept="image/gif, image/png, image/jpeg")
       if ad.picture
         img(src=`/uploads/${ad.picture}`, alt=ad.name width=200)
     //- tags
     
-    - const choices = ['Lifestyle', 'Mobile', 'Motor', 'Work']
+    - const choices = ['lifestyle', 'mobile', 'motor', 'work']
     - const tags = ad.tags || []
     ul.tags
       each choice in choices

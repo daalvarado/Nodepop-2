@@ -1,50 +1,38 @@
 [
-    {
-        "name": "Bicycle",
-        "sale": true,
-        "price": 230.15,
-        "picture": "https://source.unsplash.com/fZglO1JkwoM/400x300",
-        "tags": [
-            "lifestyle",
-            "motor"
-        ]
-    },
-    {
-        "name": "iPhone 3GS",
-        "sale": false,
-        "price": 50.00,
-        "picture": "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-iphone3gs-colors.jpg",
-        "tags": [
-            "lifestyle",
-            "mobile"
-        ]
-    },
-    {
-        "name": "Giraffe",
-        "sale": false,
-        "price": 499.99,
-        "picture": "https://source.unsplash.com/HfVsqRXkUmc/400x300",
-        "tags": [
-            "lifestyle"
-        ]
-    },
-    {
-        "name": "Helicopter",
-        "sale": true,
-        "price": 70000.00,
-        "picture": "https://source.unsplash.com/Z1nj5wHQ3YM/400x300",
-        "tags": [
-            "lifestyle",
-            "motor"
-        ]
-    },
-    {
-        "name": "Two Camels",
-        "sale": false,
-        "price": 1000.50,
-        "picture": "https://source.unsplash.com/1Q1P_XpWylY/400x300",
-        "tags": [
-            "lifestyle"
-        ]
-    }
+  {
+    "name": "Bicycle",
+    "sale": true,
+    "price": 230.15,
+    "picture": "https://source.unsplash.com/fZglO1JkwoM/400x300",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "iPhone 3GS",
+    "sale": false,
+    "price": 50.0,
+    "picture":
+      "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-iphone3gs-colors.jpg",
+    "tags": ["lifestyle", "mobile"]
+  },
+  {
+    "name": "Giraffe",
+    "sale": false,
+    "price": 499.99,
+    "picture": "https://source.unsplash.com/HfVsqRXkUmc/400x300",
+    "tags": ["lifestyle"]
+  },
+  {
+    "name": "Helicopter",
+    "sale": true,
+    "price": 70000.0,
+    "picture": "https://source.unsplash.com/Z1nj5wHQ3YM/400x300",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "Two Camels",
+    "sale": false,
+    "price": 1000.5,
+    "picture": "https://source.unsplash.com/1Q1P_XpWylY/400x300",
+    "tags": ["lifestyle"]
+  }
 ]

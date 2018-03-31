@@ -4,6 +4,7 @@ const User = mongoose.model("User");
 const multer = require("multer");
 const jimp = require("jimp");
 const i18n = require("../lib/i18nConfigure")();
+const uuid = require("uuid");
 
 const multerOptions = {
   storage: multer.memoryStorage(),
@@ -12,7 +13,7 @@ const multerOptions = {
     if (isPhoto) {
       next(null, true);
     } else {
-      next({ message: "That filetype isn't allowed!" }, false);
+      next({ message: i18n.__("That filetype isn't allowed!") }, false);
     }
   }
 };
@@ -21,17 +22,26 @@ const multerOptions = {
 exports.homePage = async (req, res) => {
   
   const ads = await Ad.find();
-  res.render('welcome', {title: 'Home Page', ads, i18n});
+  res.render("welcome", { title: i18n.__("Home Page"), ads, i18n });
 };
 
 exports.getAdsTable = async(req, res) => {
     const ads = await Ad.find()
       .sort({ created: "desc" }); 
-  res.render('adsTable', { title: 'Ads - Table', ads, i18n});
+  res.render("adsTable", { title: i18n.__("Ads - Table"), ads, i18n });
 }
 
+exports.getTags = async (req, res) => {
+  const tag = req.params.tag;
+  const tagQuery = tag || {$exists: true, $ne: []};
+  const tagsPromise = Ad.getTagsList();
+  const adsPromise = Ad.find({ tags: tagQuery });
+  const [tags, ads] = await Promise.all([tagsPromise, adsPromise]);
+  res.render("Tags", {tags, title: i18n.__("Get Stores by Tag"), tag, ads, i18n });
+};
+
 exports.addAd = (req, res) => {
-  res.render("editAd", { title: "Add a new Ad", i18n });
+  res.render("editAd", { title: i18n.__("Add a New Add"), i18n });
 };
 
 exports.upload = multer(multerOptions).single('picture');
@@ -44,7 +54,7 @@ exports.resize = async (req, res, next) => {
   const extension = req.file.mimetype.split("/")[1];
   req.body.picture = `${uuid.v4()}.${extension}`;
   const photo = await jimp.read(req.file.buffer);
-  await photo.resize(800, jimp.AUTO);
+  await photo.resize(400, jimp.AUTO);
   await photo.write(`./public/uploads/${req.body.picture}`);
   next();
 };
@@ -54,9 +64,9 @@ exports.createAd = async (req, res) => {
   const ad = await new Ad(req.body).save();
   req.flash(
     "success",
-    `Successfully Created ${ad.name}. Care to leave a review?`
+    `Successfully Added ${ad.name}.`
   );
-  res.redirect(`/store/${ad.slug}`);
+  res.redirect(`/ads`);
 };
 
 exports.english = async(req, res) => {

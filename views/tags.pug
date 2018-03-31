@@ -1,0 +1,17 @@
+extends layout
+
+include mixins/_adCard
+
+block content
+    h2 #{tag || i18n.__('Tags')}
+    
+    .tag-area
+        ul.tags
+            each t in tags
+                li.tag
+                    a.tag__link(href=`/tags/${t._id}` class=(t._id === tag ? 'tag__link--active' : ''))
+                        span.tag__text= t._id
+                        span.tag__count= t.count
+    .ads
+        each ad in ads
+            +adCard(ad)
