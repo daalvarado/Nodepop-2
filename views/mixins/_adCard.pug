@@ -7,7 +7,7 @@ mixin adCard(ad = {})
         a(href=`/ads/${ad._id}/edit`)
         != h.icon('pencil')
     .ad__hero  
-      img(src=`/uploads/${'No-Image.jpg'}`)
+      img(src=`/uploads/${ad.picture || 'No-Image.jpg'}`)
       h3.title
         a(href=`/ad/${ad.slug}`) #{ad.name}
     .ad__details

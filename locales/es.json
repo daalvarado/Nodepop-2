@@ -34,5 +34,6 @@
 	"Sale": "Sale",
 	"Price": "Price",
 	"Picture": "Picture",
-	"That filetype isn't allowed!": "That filetype isn't allowed!"
+	"That filetype isn't allowed!": "That filetype isn't allowed!",
+	"tags": "tags"
 }

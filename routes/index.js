@@ -24,4 +24,7 @@ router.post(
   catchErrors(adsController.resize),
   catchErrors(adsController.createAd)
 );
+router.get("/register", userController.registerForm);
+router.post("/register", userController.validateRegister, userController.register, authController.login);
+router.get('logout', authController.logout);
 module.exports = router;

@@ -8,6 +8,7 @@ block content
         td #{__('name')}
         td #{__('sale')}
         td #{__('price')}
+        td #{__('tags')}
         td #{__('link to picture')}
         td thumbnail
         td #{__('author')}
@@ -17,8 +18,9 @@ block content
           td #{ad.name}
           td #{ad.sale}
           td #{ad.price}
+          td #{ad.tags}
           td 
-            a(href=`${ad.picture}`) #{ad.picture}
+            a(href=`/uploads/${ad.picture}`) #{ad.picture}
               
           td #{ad.thumbnail}
           td #{ad.author}

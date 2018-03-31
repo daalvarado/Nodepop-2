@@ -436,6 +436,9 @@ h3.title a {
   padding: 5rem;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
 }
+.form-card {
+  width: 90%;
+}
 label {
   padding: 10px 0;
   display: block;
@@ -451,6 +454,7 @@ textarea.input--error {
   border-color: red;
 }
 .button {
+  margin-top: 20px;
   border: 0;
   background: #ffc40e;
   color: #303030;
@@ -528,4 +532,9 @@ textarea.input--error {
 .tag-area {
   display: grid;
   justify-items: center;
+}
+.inner {
+  justify-content: center;
+  display: grid;
+  width: 100%;
 }
