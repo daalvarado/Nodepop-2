@@ -327,6 +327,9 @@ h3.title a {
   border-radius: 15px;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
 }
+div div p {
+  font-size: 15px;
+}
 /* pagination */
 .pagination {
   display: flex;

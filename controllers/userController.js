@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
-const promisify = require("es6-promisify");
+const {promisify} = require("es6-promisify");
+const i18n = require("../lib/i18nConfigure")();
 
 exports.registerForm = async (req, res) => {
-    res.render('register', {title: 'Register'})
+    res.render('register', {title: 'Register', i18n})
+};
+
+exports.loginForm = async (req, res) => {
+  res.render('login', {title: 'Login', i18n})
+};
+
+
+exports.test = async (req, res) => {
+  res.json ({
+    name: i18n.__("hello")
+  })
 };
 
 exports.validateRegister = async (req, res, next) => {
@@ -36,7 +48,7 @@ exports.validateRegister = async (req, res, next) => {
 
 exports.register = async (req, res, next) => {
 const user = new User({ email: req.body.email, name: req.body.name });
-  const register = promisify(User.register, User);
+  
   await register(user, req.body.password);
   next();
 };

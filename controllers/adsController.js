@@ -13,7 +13,7 @@ const multerOptions = {
     if (isPhoto) {
       next(null, true);
     } else {
-      next({ message: i18n.__("That filetype isn't allowed!") }, false);
+      next({ message: "That filetype isn't allowed!" }, false);
     }
   }
 };

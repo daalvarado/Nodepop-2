@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
+const i18n = require("../../lib/i18nConfigure")();
 
 // define Schemas
 const adSchema = new mongoose.Schema({
@@ -46,9 +47,13 @@ const adSchema = new mongoose.Schema({
     type: [String],
     index: true,
     required: true,
-    
+    validate: {
+      validator: function(v) {
+        return v.length>0;
+    },
+    message: i18n.__("Add at least one tag")
   }
-});
+}});
 
 
 

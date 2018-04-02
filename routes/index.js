@@ -18,7 +18,7 @@ router.get("/ads/es", catchErrors(adsController.spanish));
 router.get("/api/ads", catchErrors(apiController.apiAds));
 router.get("/api/users", catchErrors(apiController.apiUsers));
 router.get("/add", adsController.addAd);
-router.post(
+router.post( 
   "/add",
   adsController.upload,
   catchErrors(adsController.resize),
@@ -27,4 +27,7 @@ router.post(
 router.get("/register", userController.registerForm);
 router.post("/register", userController.validateRegister, userController.register, authController.login);
 router.get('logout', authController.logout);
+router.get('/login', userController.loginForm);
+
+router.get("/test/", userController.test);
 module.exports = router;
