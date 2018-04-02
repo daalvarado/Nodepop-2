@@ -49,9 +49,12 @@ html
             input.searchInput(type="text" placeholder=__('Monkey, TV, Potatoes...') name="search")
             .searchResults
           .navSection.navSectionUser
-            if user
+            if session.user
+              li.navItem: a.navLink(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                != h.icon('logout')
+                span Logout
               li.navItem: a.navLink(href="/account", class=(currentPath.startsWith('/account') ? 'navLink--active' : ''))
-                img.gravatar(src=user.gravatar + 'd=retro')
+                img.gravatar(src=session.user.gravatar + 'd=retro')
             else
               li.navItem: a.navLink(href="/register", class=(currentPath.startsWith('/register') ? 'navLink--active' : '')) #{__("Register")}
               li.navItem: a.navLink(href="/login", class=(currentPath.startsWith('/login') ? 'navLink--active' : '')) #{__('Log In')}

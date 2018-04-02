@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
-const {promisify} = require("es6-promisify");
 const i18n = require("../lib/i18nConfigure")();
 
 exports.registerForm = async (req, res) => {
@@ -47,9 +46,13 @@ exports.validateRegister = async (req, res, next) => {
 };;
 
 exports.register = async (req, res, next) => {
-const user = new User({ email: req.body.email, name: req.body.name });
+await User.create([
+    { 
+      name: req.body.name,
+      email: req.body.email,
+      password: await User.hashPassword(req.body.password)
+    }]);
   
-  await register(user, req.body.password);
   next();
 };
 

@@ -15,9 +15,13 @@ router.get("/tags", catchErrors(adsController.getTags));
 router.get("/tags/:tag", catchErrors(adsController.getTags));
 router.get("/ads/en", catchErrors(adsController.english));
 router.get("/ads/es", catchErrors(adsController.spanish));
-router.get("/api/ads", catchErrors(apiController.apiAds));
-router.get("/api/users", catchErrors(apiController.apiUsers));
-router.get("/add", adsController.addAd);
+router.get("/api/ads", authController.isLoggedIn, catchErrors(apiController.apiAds));
+router.get(
+  "/api/users",
+  authController.isLoggedIn,
+  catchErrors(apiController.apiUsers)
+);
+router.get("/add", authController.isLoggedIn, adsController.addAd);
 router.post( 
   "/add",
   adsController.upload,
@@ -25,9 +29,10 @@ router.post(
   catchErrors(adsController.createAd)
 );
 router.get("/register", userController.registerForm);
-router.post("/register", userController.validateRegister, userController.register, authController.login);
-router.get('logout', authController.logout);
+router.post("/register", userController.validateRegister, catchErrors(userController.register), catchErrors(authController.login));
+router.get('/logout', authController.logout);
 router.get('/login', userController.loginForm);
+router.post('/login', authController.login);
 
 router.get("/test/", userController.test);
 module.exports = router;
