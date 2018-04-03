@@ -63,8 +63,8 @@ exports.loginJWT = async(req, res, next) => {
         req.flash("error", "Error in token");
         return res.redirect(301, "/login");
       }
-      req.flash("success", "You are logged in!");
-      req.body.token=token;
+      req.flash("success", `You are logged in!<br/><br/>Your token:<br/><br/>`+token);
+      req.session.user=token;
       res.redirect("/");
     });
 };
