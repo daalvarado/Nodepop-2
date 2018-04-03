@@ -32,6 +32,6 @@ router.get("/register", userController.registerForm);
 router.post("/register", userController.validateRegister, catchErrors(userController.register), catchErrors(authController.login));
 router.get('/logout', authController.logout);
 router.get('/login', userController.loginForm);
-router.post('/login', authController.login);
+router.post('/login', authController.loginJWT);
 router.get("/test/", userController.test);
 module.exports = router;

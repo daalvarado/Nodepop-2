@@ -20,7 +20,7 @@ const multerOptions = {
 
 
 exports.homePage = async (req, res) => {
-  
+  console.log(req);
   const ads = await Ad.find();
   res.render("welcome", { title: i18n.__("Home Page"), ads, i18n });
 };
