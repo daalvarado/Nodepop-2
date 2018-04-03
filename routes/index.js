@@ -33,6 +33,5 @@ router.post("/register", userController.validateRegister, catchErrors(userContro
 router.get('/logout', authController.logout);
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
-
 router.get("/test/", userController.test);
 module.exports = router;
