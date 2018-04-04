@@ -37,8 +37,7 @@ exports.isLoggedIn = (req, res, next) => {
     return;
   };
   req.flash("error", "You must be logged in to do that!");
-  res.redirect('/login');
-  return;
+  return res.redirect('/login');
 };
 
 //con JWT
@@ -56,7 +55,7 @@ exports.loginJWT = async(req, res, next) => {
       return res.redirect(301,'/login');
     }
 
-    jwt.sign({_id:user._id}, process.env.JWT_SECRET, {
+    jwt.sign({id:user._id}, process.env.JWT_SECRET, {
       expiresIn: '1h'
     }, (err, token) => {
       if(err) {
@@ -64,7 +63,10 @@ exports.loginJWT = async(req, res, next) => {
         return res.redirect(301, "/login");
       }
       req.flash("success", `You are logged in!<br/><br/>Your token:<br/><br/>`+token);
-      req.session.user=token;
+      req.session.user=user;
+      req.session.token=token;
+      // localStorage.token=token;
+      console.log('user: '+user);
       res.redirect("/");
     });
 };

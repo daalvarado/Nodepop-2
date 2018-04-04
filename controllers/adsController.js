@@ -20,7 +20,6 @@ const multerOptions = {
 
 
 exports.homePage = async (req, res) => {
-  console.log(req);
   const ads = await Ad.find();
   res.render("welcome", { title: i18n.__("Home Page"), ads, i18n });
 };
@@ -41,7 +40,7 @@ exports.getTags = async (req, res) => {
 };
 
 exports.addAd = (req, res) => {
-  res.render("editAd", { title: i18n.__("Add a New Add"), i18n });
+  res.render("editAd", { title: i18n.__("Add a New Ad"), i18n });
 };
 
 exports.upload = multer(multerOptions).single('picture');
@@ -99,13 +98,13 @@ exports.getAds = async(req, res) => {
 
   if (typeof sale !== "undefined") {
     filter.sale = sale;
-    console.log(filter.sale);
+    
   }
 
   if (typeof tags !== "undefined") {
     const regex = tags.split(",").join("|");
     filter.tags = { $regex: regex, $options: "i" };
-    console.log(filter.tags);
+    
   }
 
   if (typeof priceRaw !== "undefined") {

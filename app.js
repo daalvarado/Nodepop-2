@@ -3,6 +3,7 @@ const path = require("path");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
+const User = mongoose.model("User");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -65,6 +66,24 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  if (req.session && req.session.user) {
+    User.findOne ({email: req.session.user.email}, (err,user)=> {
+      if (user) {
+        req.user = user;
+        req.user.password="";
+        req.session.user = user;
+        res.locals.user= user;
+        console.log('session user: '+req.session.user);
+        console.log("locals user: " + res.locals.user);
+        console.log("req user: " + req.user);
+      }
+      next();
+    });
+  } else {
+    next();
+  }
+});
 
 
 

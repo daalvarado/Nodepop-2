@@ -25,13 +25,13 @@ exports.apiAds = async (req, res) => {
 
   if (typeof sale !== "undefined") {
     filter.sale = sale;
-    console.log(filter.sale);
+    
   }
 
   if (typeof tags !== "undefined") {
     const regex = tags.split(",").join("|");
     filter.tags = { $regex: regex, $options: "i" };
-    console.log(filter.tags);
+    
   }
 
   if (typeof priceRaw !== "undefined") {
