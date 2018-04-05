@@ -29,9 +29,9 @@ router.post(
   catchErrors(adsController.createAd)
 );
 router.get("/register", userController.registerForm);
-router.post("/register", userController.validateRegister, catchErrors(userController.register), catchErrors(authController.login));
+router.post("/register", userController.validateRegister, catchErrors(userController.register), catchErrors(authController.loginJWT));
 router.get('/logout', authController.logout);
-router.get('/login', userController.loginForm);
-router.post('/login', authController.loginJWT);
+router.get('/authenticate', userController.loginForm);
+router.post('/authenticate', authController.loginJWT);
 router.get("/test/", userController.test);
 module.exports = router;

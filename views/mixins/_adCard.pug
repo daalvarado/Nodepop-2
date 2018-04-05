@@ -1,11 +1,11 @@
 mixin adCard(ad = {})
   .ad
     .ad__actions
-      button #{__('soon')}
+      
       if user && ad.author.equals(user._id)
         .ad__action.ad__action--edit 
-        a(href=`/ads/${ad._id}/edit`)
-        != h.icon('pencil')
+          a(href=`/ads/${ad._id}/edit`)
+            != h.icon('pencil')
     .ad__hero  
       img(src=`/uploads/${ad.picture || 'No-Image.jpg'}`)
       h3.title

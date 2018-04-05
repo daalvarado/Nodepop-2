@@ -4,26 +4,6 @@ const bcrypt = require("bcrypt");
 const i18n = require("../lib/i18nConfigure")();
 const jwt = require('jsonwebtoken');
 
-// sin JWT
-exports.login = async (req, res) => {;
-    const email = req.body.email;
-    const password = req.body.password;
-    
-    res.locals.error = '';
-    res.locals.email = email;
-
-    const user = await User.findOne({ email: email });
-
-    if (!user || !await bcrypt.compare(password, user.password)) {
-      req.flash('error','Login details are not correct');
-      res.render('login',{title: 'Login', i18n});
-      return;
-    }
-
-    req.session.user = { _id: user._id };
-    res.redirect('/');
-};
-
 exports.logout = async (req, res) => {
     delete req.session.user;
     res.clearCookie(process.env.KEY);
@@ -37,12 +17,12 @@ exports.isLoggedIn = (req, res, next) => {
     return;
   };
   req.flash("error", "You must be logged in to do that!");
-  return res.redirect('/login');
+  return res.redirect('/authenticate');
 };
 
 //con JWT
 exports.loginJWT = async(req, res, next) => {
-  const email = req.body.email;
+    const email = req.body.email;
     const password = req.body.password;
     
     res.locals.error = '';
@@ -51,22 +31,33 @@ exports.loginJWT = async(req, res, next) => {
     const user = await User.findOne({ email: email });
 
     if (!user || !await bcrypt.compare(password, user.password)) {
+      if (res.locals.postman) {
+        return res.json({success: false, error: 'Wrong credentials'});
+      }
       req.flash('error','Login details are not correct');
-      return res.redirect(301,'/login');
+      return res.redirect(301,'/authenticate');
     }
 
     jwt.sign({id:user._id}, process.env.JWT_SECRET, {
       expiresIn: '1h'
     }, (err, token) => {
       if(err) {
+        if (res.locals.postman) {
+          return res.json({success: false, error: 'Error signing token'});
+        }
         req.flash("error", "Error in token");
-        return res.redirect(301, "/login");
+        return res.redirect(301, "/authenticate");
       }
+      if (res.locals.postman) {
+          res.json({success:true, token: token});
+          } else {
       req.flash("success", `You are logged in!<br/><br/>Your token:<br/><br/>`+token);
       req.session.user=user;
       req.session.token=token;
-      // localStorage.token=token;
-      console.log('user: '+user);
-      res.redirect("/");
+      // $window.localStorage['jwtToken']=token;
+      res.redirect("/");}
     });
 };
+
+
+

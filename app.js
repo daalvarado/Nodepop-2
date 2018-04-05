@@ -17,11 +17,8 @@ const errorHandlers = require("./handlers/errorHandlers");
 
 const app = express();
 
-
 // handle cookies
 app.use(cookieParser());
-
-
 
 // define view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -36,8 +33,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // use express validator
 app.use(expressValidator());
-
-
  
 // use sessions
 app.use(
@@ -57,6 +52,7 @@ app.use(flash());
 // use i18n
 app.use(i18n.init);
 
+// use helpers
 app.use((req, res, next) => {
   res.locals.h = helpers;
   res.locals.session=req.session;
@@ -66,7 +62,11 @@ app.use((req, res, next) => {
   next();
 });
 
+//identify postman requests and put user data into user variable
 app.use((req, res, next) => {
+  res.locals.postman = req.headers["user-agent"]
+        .toLowerCase()
+        .startsWith("postman");
   if (req.session && req.session.user) {
     User.findOne ({email: req.session.user.email}, (err,user)=> {
       if (user) {
@@ -74,9 +74,6 @@ app.use((req, res, next) => {
         req.user.password="";
         req.session.user = user;
         res.locals.user= user;
-        console.log('session user: '+req.session.user);
-        console.log("locals user: " + res.locals.user);
-        console.log("req user: " + req.user);
       }
       next();
     });
@@ -84,8 +81,6 @@ app.use((req, res, next) => {
     next();
   }
 });
-
-
 
 //Define routes
 app.use(  "/",  routes);

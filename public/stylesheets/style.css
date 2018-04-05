@@ -330,6 +330,9 @@ h3.title a {
 div div p {
   font-size: 15px;
 }
+.gravLink {
+  padding: 0;
+}
 /* pagination */
 .pagination {
   display: flex;
@@ -540,4 +543,14 @@ textarea.input--error {
   justify-content: center;
   display: grid;
   width: 100%;
+}
+.ad__action {
+  font-size: 10px;
+}
+.ad__action svg {
+  width: 25px;
+  fill: white;
+}
+.ad__action--edit a {
+  border-bottom: 0;
 }

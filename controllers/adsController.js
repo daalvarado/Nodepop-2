@@ -59,7 +59,7 @@ exports.resize = async (req, res, next) => {
 };
 
 exports.createAd = async (req, res) => {
-  // req.body.author = req.user._id;
+  req.body.author = req.user._id;
   const ad = await new Ad(req.body).save();
   req.flash(
     "success",
