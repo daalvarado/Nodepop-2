@@ -49,12 +49,21 @@ exports.apiAds = async (req, res) => {
   }
     
   const ads = await Ad
-    .list(filter, skip, limit, sort, fields);
+  .list(filter, skip, limit, sort, fields);
+  
+  for (var i = 0; i<ads.length; i++) {
+    if (ads[i].picture) {
+      ads[i].picture = `/uploads/${ads[i].picture}`;
+    }
+  };
+
+    
   res.json(ads);
 };
 
 exports.apiUsers = async (req, res) => {
   const users = await User.find();
+  
   res.json(users);
 };
 
