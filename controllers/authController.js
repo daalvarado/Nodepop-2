@@ -6,12 +6,13 @@ const jwt = require('jsonwebtoken');
 
 exports.logout = async (req, res) => {
     delete req.session.user;
+    delete req.session.token;
     res.clearCookie(process.env.KEY);
     req.flash('success', 'You are now logged out! 👋');
     res.redirect('/');
 };
 
-exports.isLoggedIn = (req, res, next) => {
+exports.isLoggedInOld = (req, res, next) => {
   if (req.session.user) {
     next();
     return;
@@ -20,7 +21,24 @@ exports.isLoggedIn = (req, res, next) => {
   return res.redirect('/authenticate');
 };
 
-//con JWT
+exports.isLoggedIn = (req, res, next) => {
+  const token = req.session.token || req.query.token || req.get('x-access-token');
+  if (!token) {
+    const err = new Error('no token provided');
+    err.status=401;
+    return next(err);
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      err.status=401;
+      return next(err);
+    }
+    console.log(decoded);
+    req.apiUserId = decoded.id;
+    next();
+  })
+}
+
 exports.loginJWT = async(req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -54,7 +72,6 @@ exports.loginJWT = async(req, res, next) => {
       req.flash("success", `You are logged in!<br/><br/>Your token:<br/><br/>`+token);
       req.session.user=user;
       req.session.token=token;
-      // $window.localStorage['jwtToken']=token;
       res.redirect("/");}
     });
 };

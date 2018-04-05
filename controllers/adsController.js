@@ -43,6 +43,18 @@ exports.addAd = (req, res) => {
   res.render("editAd", { title: i18n.__("Add a New Ad"), i18n });
 };
 
+const confirmOwner = (ad, user) => {
+  if (!ad.author.equals(user._id)) {
+    throw Error('You must have created an ad in order to edit it!');
+  }
+};
+
+exports.editAd = async (req, res) => {
+  const ad = await Ad.findOne({ _id: req.params.id });
+  confirmOwner(ad, req.user);
+  res.render('editAd', { title: `Edit ${ad.name}`, ad });
+};
+
 exports.upload = multer(multerOptions).single('picture');
 
 exports.resize = async (req, res, next) => {
@@ -64,6 +76,18 @@ exports.createAd = async (req, res) => {
   req.flash(
     "success",
     `Successfully Added ${ad.name}.`
+  );
+  res.redirect(`/ads`);
+};
+
+exports.updateAd = async (req, res) => {
+  const ad = await Ad.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    new: true,
+    runValidators: true
+  }).exec();
+  req.flash(
+    "success",
+    `Successfully updated <strong>${ad.name}</strong>`
   );
   res.redirect(`/ads`);
 };
