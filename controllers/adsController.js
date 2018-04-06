@@ -62,7 +62,11 @@ exports.resize = async (req, res, next) => {
     return;
   }
   const extension = req.file.mimetype.split("/")[1];
-  req.body.picture = `${uuid.v4()}.${extension}`;
+  const photoId = uuid.v4();
+  const thumbnailId = `${photoId}-t`;
+  req.body.picture = `${photoId}.${extension}`;
+  req.body.thumbnail = `${thumbnailId}.${extension}`; 
+  
   const photo = await jimp.read(req.file.buffer);
   await photo.resize(400, jimp.AUTO);
   await photo.write(`./public/uploads/${req.body.picture}`);

@@ -35,7 +35,7 @@ router.get("/add", authController.isLoggedIn, adsController.addAd);
 router.post(
   "/add",
   adsController.upload,
-  catchErrors(photoClient.resize),
+  catchErrors(adsController.resize),
   catchErrors(photoClient.thumbnail),
   catchErrors(adsController.createAd)
 );

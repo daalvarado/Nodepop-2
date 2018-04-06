@@ -21,8 +21,8 @@ block content
           td #{ad.tags}
           td 
             a(href=`/uploads/${ad.picture}`) #{ad.picture}
-              
-          td #{ad.thumbnail}
+          td
+            img(src=`/uploads/${ad.thumbnail}`)
           td #{ad.author.email}
           td #{ad._id}
           
