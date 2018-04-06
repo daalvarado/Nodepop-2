@@ -18,7 +18,6 @@ router.get("/ads/es", catchErrors(adsController.spanish));
 router.get("/ads/:id/edit", catchErrors(adsController.editAd));
 
 // Register - Login - Logout
-router.get("/test/", userController.test);
 router.get("/register", userController.registerForm);
 router.post(
   "/register",
