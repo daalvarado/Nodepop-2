@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "photo": "node ./lib/photoService.js",
-    "dev": "cross-env DEBUG=nodepop-2:* NODE_ENV=development nodemon start.js",
+    "nodemon":
+      "cross-env DEBUG=nodepop-2:* NODE_ENV=development nodemon start.js",
+    "dev": "concurrently \"npm run photo\" \"npm run nodemon\"",
     "cluster":
       "cross-env DEBUG=nodepop-2:* NODE_ENV=development nodemon start-cluster.js",
     "dbinit": "node ./database/dbInit"
@@ -23,6 +25,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "^1.4.3",

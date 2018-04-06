@@ -6,11 +6,24 @@ Practica de Back End Avanzado
 
 Users:
 
-popeye@espinacas.com
-keepcoding
+    email: popeye@espinacas.com
+    pw: keepcoding
 
-mariomario@nintendo2.com
-nodenode
+    email: mariomario@nintendo2.com
+    pw: nodenode
 
-user@example.com
-1234
+    email: user@example.com
+    pw: 1234
+
+API paths:
+
+    ad list:
+        localhost:3000/api/ads [GET]    (header: {x-access-token: token received})
+                                        (header: {Accept: application-json})
+
+    user list:
+        localhost:3000/api/users [GET]  (header: {x-access-token: token received})
+                                        (header: {Accept: application-json})
+
+    get token:
+        localhost:3000/authenticate [POST] (put email and password in Body)
