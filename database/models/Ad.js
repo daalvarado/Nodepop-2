@@ -53,7 +53,10 @@ const adSchema = new mongoose.Schema({
     },
     message: i18n.__("Add at least one tag")
   }
-}});
+}}, {
+  toJSON: { virtuals:true },
+  toObject: { virtuals: true },
+});
 
 
 
@@ -74,10 +77,9 @@ adSchema.statics.getTagsList = function() {
   ]);
 };
 
-
-
 // create the model
 const Ad = mongoose.model("Ad", adSchema);
+
 
 // export the model
 module.exports = { Ad };
