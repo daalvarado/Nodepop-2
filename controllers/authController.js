@@ -24,9 +24,12 @@ exports.isLoggedInOld = (req, res, next) => {
 exports.isLoggedIn = (req, res, next) => {
   const token = req.session.token || req.query.token || req.get('x-access-token');
   if (!token) {
+    if (res.locals.postman || req.url=="/api/ads" || req.url=="/api/users") {
     const err = new Error('no token provided');
     err.status=401;
-    return next(err);
+    return next(err);}
+    req.flash("error", "You must be logged in to do that!");
+    return res.redirect("/authenticate");
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
