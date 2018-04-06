@@ -4,6 +4,7 @@ const adsController = require("../controllers/adsController");
 const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
 const apiController = require("../controllers/apiController");
+const photoClient = require("../lib/photoClient");
 
 const { catchErrors } = require("../handlers/errorHandlers");
 
@@ -34,7 +35,8 @@ router.get("/add", authController.isLoggedIn, adsController.addAd);
 router.post(
   "/add",
   adsController.upload,
-  catchErrors(adsController.resize),
+  catchErrors(photoClient.resize),
+  catchErrors(photoClient.thumbnail),
   catchErrors(adsController.createAd)
 );
 router.post(

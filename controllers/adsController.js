@@ -18,7 +18,6 @@ const multerOptions = {
   }
 };
 
-
 exports.homePage = async (req, res) => {
   const ads = await Ad.find();
   res.render("welcome", { title: i18n.__("Home Page"), ads, i18n });
@@ -27,10 +26,6 @@ exports.homePage = async (req, res) => {
 exports.getAdsTable = async(req, res) => {
     const ads = await Ad.find().populate('author', 'email')
       .sort({ created: "desc" });
-      console.log(ads);
-    
-     
-    
   res.render("adsTable", { title: i18n.__("Ads - Table"), ads, i18n });
 }
 
