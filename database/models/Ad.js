@@ -54,7 +54,7 @@ const adSchema = new mongoose.Schema({
     message: i18n.__("Add at least one tag")
   }
 }}, {
-  toJSON: { virtuals:true },
+ 
   toObject: { virtuals: true },
 });
 

@@ -1,10 +1,20 @@
 [
-    {
-        "name": "Popeye",
-        "email": "popeye@espinacas.com"
-    },
-    {
-        "name": "Mario Mario",
-        "email": "mariomario@nintendo2.com"
-    }
+  {
+    "_id": "5ac7bc0b3a6e4614f4085d47",
+    "name": "Popeye",
+    "email": "popeye@espinacas.com",
+    "password": "$2a$10$lAHD5o9Zbr6RBEHqD/hZV.PPTxsco2OHSBJ8sE9UYOpFC1f0W90vy"
+  },
+  {
+    "_id": "5ac7bc663a6e4614f4085d48",
+    "name": "Mario Mario",
+    "email": "mariomario@nintendo2.com",
+    "password": "$2a$10$P/RC9jpn8/xYD2KPtKPsWeeocc2dZOJrA1CZWexrQbf0jIt6Ni35y"
+  },
+  {
+    "_id": "5ac7bcda3a6e4614f4085d49",
+    "name": "C Cifuentes",
+    "email": "user@example.com",
+    "password": "$2a$10$S5jf7xPv7zDXcVG2PHtQTOd6VXQfQ.hw5VllLTH.r15NcVj1G4jVa"
+  }
 ]

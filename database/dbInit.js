@@ -1,5 +1,5 @@
 "use strict";
-require("dotenv").config({ path: "variables.env" });
+
 const {mongoose} = require("./connect");
 const { Ad } = require("./models/Ad");
 const { User } = require("./models/User");
@@ -7,35 +7,20 @@ const { User } = require("./models/User");
 const adsDatabase = require("./db/ads.json");
 const usersDatabase = require("./db/users.json");
 
-// Ad.deleteMany()
-//   .then(result => {
-//     console.log("Ads database erased");
-//   })
-//   .then(Ad.insertMany(adsDatabase))
-//   .then(result => {
-//     console.log("Ads database updated");
-//   })
-//   .catch(e => console.log("Error deleting and updating Ads database"));
+async function deleteData() {
+      await Ad.remove();
+      console.log("Ad Data Deleted!!");
+      await User.remove();
+      console.log('User Data Deleted!!');
+      process.exit();
+  }
 
-// User.deleteMany()
-//   .then(result => {
-//     console.log("Users database erased");
-//   })
-//   .then(User.insertMany(usersDatabase))
-//   .then(result => {
-//     console.log("Users database updated");
-//     process.exit(0);
-//   })
-//   .catch(e => console.log("Error deleting and updating Users database"));
-
-  async function initData() {
-      await Ad.deleteMany();
-      await User.deleteMany();
-      console.log('Data Deleted!!');
+  async function loadData() {
  try{
     await Ad.insertMany(adsDatabase);
+    console.log("Ad Data Loaded!!");
     await User.insertMany(usersDatabase);
-    console.log("Data Loaded!!");
+    console.log("User Data Loaded!!");
     process.exit(0)
 } catch(e) {
     console.log('👎👎👎👎👎👎👎👎 Error Loading Data!');
@@ -45,4 +30,5 @@ const usersDatabase = require("./db/users.json");
   }
 
  
-initData();
+deleteData();
+loadData();

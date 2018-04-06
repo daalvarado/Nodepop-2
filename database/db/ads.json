@@ -3,36 +3,64 @@
     "name": "Bicycle",
     "sale": true,
     "price": 230.15,
-    "picture": "https://source.unsplash.com/fZglO1JkwoM/400x300",
+    "picture": "5d6f6bf9-c7f9-43f7-80f5-79761bf2b564.jpeg",
+    "thumbnail": "5d6f6bf9-c7f9-43f7-80f5-79761bf2b564-t.jpeg",
+    "author": "5ac7bc0b3a6e4614f4085d47",
+    "created": "2018-04-06T20:12:08.676Z",
+    "_id": "5ac7d498e7bbb728b44a5860",
     "tags": ["lifestyle", "motor"]
   },
   {
     "name": "iPhone 3GS",
     "sale": false,
     "price": 50.0,
-    "picture":
-      "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iphone/iphone-iphone3gs-colors.jpg",
-    "tags": ["lifestyle", "mobile"]
+    "picture": "7d44f811-bbf5-4e6f-a0a8-41485023a973.jpeg",
+    "thumbnail": "7d44f811-bbf5-4e6f-a0a8-41485023a973-t.jpeg",
+    "author": "5ac7bc0b3a6e4614f4085d47",
+    "created": "2018-04-06T20:13:01.657Z",
+    "_id": "5ac7d4cde7bbb728b44a5861",
+    "tags": ["lifestyle", "mobile", "motor", "work"]
   },
   {
     "name": "Giraffe",
     "sale": false,
     "price": 499.99,
-    "picture": "https://source.unsplash.com/HfVsqRXkUmc/400x300",
-    "tags": ["lifestyle"]
+    "picture": "f36d81fd-8b1a-4fa0-a148-595e9f807690.jpeg",
+    "thumbnail": "f36d81fd-8b1a-4fa0-a148-595e9f807690-t.jpeg",
+    "author": "5ac7bc663a6e4614f4085d48",
+    "created": "2018-04-06T20:14:00.534Z",
+    "_id": "5ac7d508e7bbb728b44a5862",
+    "tags": ["lifestyle", "mobile", "motor"]
   },
   {
     "name": "Helicopter",
     "sale": true,
     "price": 70000.0,
-    "picture": "https://source.unsplash.com/Z1nj5wHQ3YM/400x300",
-    "tags": ["lifestyle", "motor"]
+    "picture": "a596bbc6-89ea-483f-b696-94eea89cf17c.jpeg",
+    "thumbnail": "a596bbc6-89ea-483f-b696-94eea89cf17c-t.jpeg",
+    "author": "5ac7bc663a6e4614f4085d48",
+    "created": "2018-04-06T20:14:34.672Z",
+    "_id": "5ac7d52ae7bbb728b44a5863",
+    "tags": ["motor", "work"]
   },
   {
     "name": "Two Camels",
     "sale": false,
     "price": 1000.5,
-    "picture": "https://source.unsplash.com/1Q1P_XpWylY/400x300",
+    "picture": "7dd32207-c6a0-4dab-928b-a391e3a2dbe3.jpeg",
+    "thumbnail": "7dd32207-c6a0-4dab-928b-a391e3a2dbe3-t.jpeg",
+    "author": "5ac7bc663a6e4614f4085d49",
+    "created": "2018-04-06T20:15:06.320Z",
+    "_id": "5ac7d54ae7bbb728b44a5864",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "Eggs and Bacon",
+    "sale": true,
+    "price": 15,
+    "author": "5ac7bc663a6e4614f4085d49",
+    "created": "2018-04-06T19:55:03.720Z",
+    "_id": "5ac7d0974fca88577064cfcc",
     "tags": ["lifestyle"]
   }
 ]

@@ -22,7 +22,7 @@ block content
           td 
             a(href=`/uploads/${ad.picture}`) #{ad.picture}
           td
-            img(src=`/uploads/${ad.thumbnail}`)
+            img(src=`/uploads/${ad.thumbnail || 'no-image-t.jpeg'}`)
           td #{ad.author.email}
           td #{ad._id}
           

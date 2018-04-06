@@ -54,6 +54,9 @@ exports.apiAds = async (req, res) => {
   for (var i = 0; i<ads.length; i++) {
     if (ads[i].picture) {
       ads[i].picture = `/uploads/${ads[i].picture}`;
+    };
+    if (ads[i].thumbnail) {
+      ads[i].thumbnail = `/uploads/${ads[i].thumbnail}`;
     }
   };
 
