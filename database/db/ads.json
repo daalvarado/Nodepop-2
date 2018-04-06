@@ -49,7 +49,7 @@
     "price": 1000.5,
     "picture": "7dd32207-c6a0-4dab-928b-a391e3a2dbe3.jpeg",
     "thumbnail": "7dd32207-c6a0-4dab-928b-a391e3a2dbe3-t.jpeg",
-    "author": "5ac7bc663a6e4614f4085d49",
+    "author": "5ac7bcda3a6e4614f4085d49",
     "created": "2018-04-06T20:15:06.320Z",
     "_id": "5ac7d54ae7bbb728b44a5864",
     "tags": ["lifestyle", "motor"]
@@ -58,7 +58,7 @@
     "name": "Eggs and Bacon",
     "sale": true,
     "price": 15,
-    "author": "5ac7bc663a6e4614f4085d49",
+    "author": "5ac7bcda3a6e4614f4085d49",
     "created": "2018-04-06T19:55:03.720Z",
     "_id": "5ac7d0974fca88577064cfcc",
     "tags": ["lifestyle"]
