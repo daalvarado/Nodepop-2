@@ -3,11 +3,11 @@ const User = mongoose.model("User");
 const i18n = require("../lib/i18nConfigure")();
 
 exports.registerForm = async (req, res) => {
-    res.render('register', {title: 'Register', i18n})
+    res.render('register', {title: i18n.__('Register'), i18n})
 };
 
 exports.loginForm = async (req, res) => {
-  res.render('login', {title: 'Login', i18n})
+  res.render('login', {title: i18n.__('Login'), i18n})
 };
 
 

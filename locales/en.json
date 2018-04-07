@@ -39,5 +39,18 @@
 	"tags": "tags",
 	"Add at least one tag": "Add at least one tag",
 	"hello": "hello",
-	"Add a New Ad": "Add a New Ad"
+	"Add a New Ad": "Add a New Ad",
+	"Password": "Password",
+	"Email Address": "Email Address",
+	"Login": "Login",
+	"Email": "Email",
+	"Confirm Password": "Confirm Password",
+	"You must be logged in to do that!": "You must be logged in to do that!",
+	"Page ": "Page ",
+	" does not exist. So I put you on page ": " does not exist. So I put you on page ",
+	"You are logged in!<br/><br/>Your token:<br/><br/>": "You are logged in!<br/><br/>Your token:<br/><br/>",
+	"Successfully Added ": "Successfully Added ",
+	"You are now logged out!": "You are now logged out!",
+	"no token provided": "no token provided",
+	"Logout": "Logout"
 }

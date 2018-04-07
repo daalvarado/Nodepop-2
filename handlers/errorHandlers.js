@@ -1,3 +1,5 @@
+const i18n = require("../lib/i18nConfigure")();
+
 
 exports.catchErrors = (fn) => {
   return function(req, res, next) {
@@ -10,7 +12,7 @@ exports.catchErrors = (fn) => {
   If we hit a route that is not found, we mark it as 404 and pass it along to the next error handler to display
 */
 exports.notFound = (req, res, next) => {
-  const err = new Error("Not Found");
+  const err = new Error(i18n__("Not Found"));
   err.status = 404;
   next(err);
 };
@@ -40,14 +42,14 @@ exports.developmentErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.format({
     "text/html": () => {
-      res.render("error", errorDetails);
+      res.render("error", {errorDetails, i18n});
     }, 
     "application/json": () => res.json(errorDetails) 
   });
 };
 
 /*
-  Production Error Hanlder
+  Production Error Handler
   No stacktraces are leaked to user
 */
 exports.productionErrors = (err, req, res, next) => {

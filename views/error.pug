@@ -2,6 +2,6 @@ extends layout
 
 block content
   .inner
-    h2= status
-    p.errorp= message
-  pre.error!= details
+    h2= errorDetails.status
+    p.errorp= errorDetails.message
+  pre.error!= errorDetails.details

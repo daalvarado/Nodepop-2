@@ -1,8 +1,8 @@
 mixin loginForm()
   
   form.form(action="/authenticate" method="POST" class="card")
-    label(for="email") Email Address
+    label(for="email") #{__('Email Address')}
     input(type="email" name="email")
-    label(for="password") Password
+    label(for="password") #{__('Password')}
     input(type="password" name="password")
     input.button(type="submit" value="Log In →")

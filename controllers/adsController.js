@@ -78,7 +78,7 @@ exports.createAd = async (req, res) => {
   const ad = await new Ad(req.body).save();
   req.flash(
     "success",
-    `Successfully Added ${ad.name}.`
+    i18n.__('Successfully Added ')+ad.name
   );
   res.redirect(`/ads`);
 };
@@ -160,7 +160,7 @@ exports.getAds = async(req, res) => {
   const [ads, count] = await Promise.all([adsPromise, countPromise]);
   const pages = Math.ceil(count / limit);
   if (!ads.length && skip) {
-    req.flash('info', `Hey! You asked for page ${page}. But that doesn't exist. So I put you on page ${pages}`);
+    req.flash('info', i18n.__('Page ')+page+i18n.__(' does not exist. So I put you on page ')+pages);
     res.redirect(`/ads/page/${pages}`);
     return;
   }

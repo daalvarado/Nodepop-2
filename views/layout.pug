@@ -31,18 +31,18 @@ html
                 != h.icon('add')
                 span #{__('Add')}
             li.navItem
-              a.navLink(href='/api/ads', class=(currentPath.startsWith('/api') ? 'navLink--active' : ''))
+              a.navLink(href='/api/ads', class=(currentPath.startsWith('/api/ads') ? 'navLink--active' : ''))
                 != h.icon('api')
                 span API
             li.navItem
-              a.navLink(href='/api/users', class=(currentPath.startsWith('/users') ? 'navLink--active' : ''))
+              a.navLink(href='/api/users', class=(currentPath.startsWith('/api/users') ? 'navLink--active' : ''))
                 != h.icon('users')
                 span #{__('Users')}
 
           .navSection.navSectionLanguages
             each item in h.languages
               li.navItem
-                //- a.navLink.navLang(href=item.slug, id=item.title,class=(item.title.startsWith(i18n.locale) ? 'navLink--active': ''))
+                a.navLink.navLang(href=item.slug, id=item.title,class=(item.title.startsWith(i18n.locale) ? 'navLink--active': ''))
                   !=h.icon(item.icon)
                   span #{item.title}
           .navSection.navSectionSearch
@@ -52,7 +52,7 @@ html
             if user
               li.navItem: a.navLink(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
                 != h.icon('logout')
-                span Logout
+                span #{__('Logout')}
               li.navItem: a.navLink.gravLink(href="/", class=(currentPath.startsWith('/account') ? 'navLink--active' : ''))
                 img.gravatar(src=user.gravatar + 'd=retro')
             else
