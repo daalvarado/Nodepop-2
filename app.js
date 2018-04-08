@@ -8,7 +8,6 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const flash = require("connect-flash");
-const {promisify} = require("es6-promisify");
 const expressValidator = require("express-validator");
 const routes = require("./routes/index");
 const helpers = require("./helpers");
