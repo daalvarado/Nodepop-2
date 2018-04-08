@@ -1,7 +1,7 @@
 'use strict'
 
 require("should-http");
-require("dotenv").config({ path: "../variables.env" });
+require("dotenv").config({ path: "./variables.env" });
 
 const supertest = require("supertest");
 const assert = require("assert");

@@ -42,7 +42,7 @@ exports.developmentErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.format({
     "text/html": () => {
-      res.render("error", {errorDetails, i18n});
+      res.render("error", {errorDetails, title:"Error", i18n});
     }, 
     "application/json": () => res.json(errorDetails) 
   });
