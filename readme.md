@@ -15,6 +15,8 @@ Practica de Back End Avanzado
 
     start test (with mocha): **npm run e2e** (app service must be running)
 
+    open web app in browser: http://localhost:(port specified in variables.env)
+
 ### Existing Users (additonal users can be created using /register path):
 
     email: popeye@espinacas.com
