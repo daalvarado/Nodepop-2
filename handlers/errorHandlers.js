@@ -1,7 +1,6 @@
 const i18n = require("../lib/i18nConfigure")();
 
-
-exports.catchErrors = (fn) => {
+exports.catchErrors = fn => {
   return function(req, res, next) {
     return fn(req, res, next).catch(next);
   };
@@ -42,9 +41,9 @@ exports.developmentErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.format({
     "text/html": () => {
-      res.render("error", {errorDetails, title:"Error", i18n});
-    }, 
-    "application/json": () => res.json(errorDetails) 
+      res.render("error", { errorDetails, title: "Error", i18n });
+    },
+    "application/json": () => res.json(errorDetails)
   });
 };
 
@@ -53,9 +52,15 @@ exports.developmentErrors = (err, req, res, next) => {
   No stacktraces are leaked to user
 */
 exports.productionErrors = (err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render("error", {
+  const errorDetails = {
     message: err.message,
-    error: {}
+    status: err.status
+  };
+  res.status(err.status || 500);
+  res.format({
+    "text/html": () => {
+      res.render("error", { errorDetails, title: "Error", i18n });
+    },
+    "application/json": () => res.json(errorDetails)
   });
 };
