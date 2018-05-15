@@ -35,7 +35,7 @@ exports.getTags = async (req, res) => {
   const tagsPromise = Ad.getTagsList();
   const adsPromise = Ad.find({ tags: tagQuery });
   const [tags, ads] = await Promise.all([tagsPromise, adsPromise]);
-  res.render("Tags", {tags, title: i18n.__("Get Stores by Tag"), tag, ads, i18n });
+  res.render("tags", {tags, title: i18n.__("Get Stores by Tag"), tag, ads, i18n });
 };
 
 exports.addAd = (req, res) => {
@@ -58,15 +58,15 @@ exports.upload = multer(multerOptions).single('picture');
 
 exports.resize = async (req, res, next) => {
   if (!req.file) {
-    next(); 
+    next();
     return;
   }
   const extension = req.file.mimetype.split("/")[1];
   const photoId = uuid.v4();
   const thumbnailId = `${photoId}-t`;
   req.body.picture = `${photoId}.${extension}`;
-  req.body.thumbnail = `${thumbnailId}.${extension}`; 
-  
+  req.body.thumbnail = `${thumbnailId}.${extension}`;
+
   const photo = await jimp.read(req.file.buffer);
   await photo.cover(800, 800);
   await photo.write(`./public/uploads/${req.body.picture}`);
@@ -125,13 +125,13 @@ exports.getAds = async(req, res) => {
 
   if (typeof sale !== "undefined") {
     filter.sale = sale;
-    
+
   }
 
   if (typeof tags !== "undefined") {
     const regex = tags.split(",").join("|");
     filter.tags = { $regex: regex, $options: "i" };
-    
+
   }
 
   if (typeof priceRaw !== "undefined") {

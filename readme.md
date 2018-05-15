@@ -2,6 +2,8 @@
 
 ## Diego Alvarado
 
+### URL con la practica: https://nodepop.diegoalvarado.net \*\* http://34.229.48.241
+
 Practica de Back End Avanzado
 
 ### Setting up environment:
